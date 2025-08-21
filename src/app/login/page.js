@@ -1,6 +1,6 @@
 "use client";
 
-// import { signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useSearchParams } from "next/navigation";
