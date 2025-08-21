@@ -21,8 +21,8 @@ export default function Navbar() {
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-blue-600">
-              MyBrand
+            <Link href="/" className="text-3xl font-extrabold text-blue-600">
+              <span className="text-black">Next15</span> Products
             </Link>
           </div>
 
@@ -41,8 +41,8 @@ export default function Navbar() {
               href="/login"
               className={`px-4 py-2 rounded transition ${
                 pathname === "/login"
-                  ? "bg-yellow-400 text-white font-semibold"
-                  : "bg-blue-600 text-white hover:bg-yellow-400"
+                  ? "bg-black text-white font-semibold"
+                  : "bg-blue-600 text-white hover:bg-black"
               }`}
             >
               Login
