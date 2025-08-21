@@ -1,58 +1,20 @@
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
-import Credentials from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 
-const authOptions = {
+const handler = NextAuth({
   providers: [
-    Google({
+    GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-    Credentials({
-      name: "Credentials",
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
-        const demoUser = {
-          id: "1",
-          name: "Demo User",
-          email: "demo@example.com",
-          password: "password123",
-        };
-
-        if (
-          credentials?.email === demoUser.email &&
-          credentials?.password === demoUser.password
-        ) {
-          const { password: _pw, ...user } = demoUser;
-          return user;
-        }
-        return null;
-      },
-    }),
   ],
-  session: { strategy: "jwt" },
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) token.user = { id: user.id, name: user.name, email: user.email };
-      return token;
-    },
-    async session({ session, token }) {
-      if (token?.user) session.user = token.user;
+    async session({ session }) {
+      // session.user.image automatic থাকবে from Google
       return session;
     },
-    async redirect({ url, baseUrl }) {
-      if (url.startsWith("/")) return `${baseUrl}${url}`;
-      return `${baseUrl}/products`;
-    },
   },
-  pages: {
-    signIn: "/login",
-  },
-};
+});
 
-// ✅ App Router compatible
-export const GET = NextAuth(authOptions);
-export const POST = NextAuth(authOptions);
+export { handler as GET, handler as POST };
