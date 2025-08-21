@@ -28,7 +28,7 @@ export default function ProductHighlights() {
       <div className="max-w-7xl mx-auto px-6 text-center">
         {/* Section Title */}
         <h3 className="text-4xl font-extrabold text-gray-800 mb-4">
-          Featured Products
+          Featured <span className="text-blue-600">Products</span>
         </h3>
         <p className="text-gray-600 mb-12">
           Hand-picked collection of our best products just for you
