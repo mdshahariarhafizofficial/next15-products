@@ -1,12 +1,21 @@
-import { NextResponse } from "next/server";
-import { products } from "../data";
+import fs from "fs";
+import path from "path";
 
-export async function GET(_req, { params }) {
-  const idNum = Number(params.id);
-  const product = products.find((p) => p.id === idNum);
+const dataFile = path.join(process.cwd(), "src/app/api/products/data.json");
+
+function loadProducts() {
+  const json = fs.readFileSync(dataFile, "utf-8");
+  return JSON.parse(json);
+}
+
+// GET product by id
+export async function GET(_, { params }) {
+  const { id } = params;
+  const products = loadProducts();
+  const product = products.find((p) => String(p.id) === String(id));
 
   if (!product) {
-    return NextResponse.json({ error: "Product not found" }, { status: 404 });
+    return Response.json({ error: "Product not found" }, { status: 404 });
   }
-  return NextResponse.json(product);
+  return Response.json(product);
 }

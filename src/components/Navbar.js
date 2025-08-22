@@ -61,7 +61,7 @@ export default function Navbar() {
                     <p className="px-4 py-1 text-gray-700 font-semibold">{session.user?.name}</p>
                     <p className="px-4 py-1 text-gray-500 text-sm truncate">{session.user?.email}</p>
                     <Link
-                      href="/dashboard"
+                      href="/dashboard/add-product"
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded transition"
                       onClick={() => setDropdownOpen(false)}
                     >
@@ -120,7 +120,7 @@ export default function Navbar() {
               <p className="px-4 py-1 font-semibold">{session.user?.name}</p>
               <p className="px-4 py-1 text-sm truncate">{session.user?.email}</p>
               <Link
-                href="/dashboard"
+                href="/dashboard/add-product"
                 className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                 onClick={() => setIsOpen(false)}
               >
