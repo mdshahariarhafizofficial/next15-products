@@ -1,26 +1,99 @@
-// এই ফাইলটি Server Component হিসেবে থাকবে, তাই 'use client' থাকবে না
-import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
+"use client";
 
-// ClientLoginForm কে ডাইনামিকভাবে ইম্পোর্ট করা হয়েছে ssr: false সহ
-// এটি নিশ্চিত করে যে useSearchParams শুধুমাত্র ক্লায়েন্ট-সাইডে রেন্ডার হবে
-const ClientLoginForm = dynamic(() => import('./ClientLoginForm'), {
-  ssr: false, // সার্ভার-সাইড রেন্ডারিং বন্ধ করা হয়েছে এই কম্পোনেন্টের জন্য
-  // লোডিং স্টেট দেখানোর জন্য একটি সরল ফলব্যাক
-  loading: () => (
-    <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 text-center text-gray-600">
-      Loading login form...
-    </div>
-  ),
-});
+import { signIn } from "next-auth/react";
+import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+
 
 export default function LoginPage() {
+  const params = useSearchParams();
+  const callbackUrl = params.get("callbackUrl") || "/products";
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loadingCreds, setLoadingCreds] = useState(false);
+  const [loadingGoogle, setLoadingGoogle] = useState(false);
+
+  const onCredentialsLogin = async (e) => {
+    e.preventDefault();
+    setLoadingCreds(true);
+    await signIn("credentials", {
+      email,
+      password,
+      redirect: true,
+      callbackUrl,
+    });
+  };
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-indigo-100 px-4">
-      {/* Outer Suspense for the entire page content */}
-      <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-xl">Loading page content...</div>}>
-         <ClientLoginForm />
-      </Suspense>
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+          Welcome Back
+        </h1>
+        <p className="text-center text-gray-500 mb-8">
+          Sign in to access your dashboard & manage products
+        </p>
+
+        {/* Google Login */}
+        <button
+          onClick={() => {
+            setLoadingGoogle(true);
+            signIn("google", { callbackUrl });
+          }}
+          disabled={loadingGoogle}
+          className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 font-semibold hover:bg-gray-300 shadow transition disabled:opacity-60 mb-6 cursor-pointer"
+        >
+          <FcGoogle size={25} />
+          {loadingGoogle ? "Signing in..." : "Continue with Google"}
+        </button>
+
+        <div className="flex items-center my-4">
+          <hr className="flex-grow border-gray-300" />
+          <span className="px-3 text-gray-400 text-sm">or</span>
+          <hr className="flex-grow border-gray-300" />
+        </div>
+
+        {/* Credentials Form */}
+        <form onSubmit={onCredentialsLogin} className="space-y-4">
+          <input
+            type="email"
+            className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="demo@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="password123"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          <button
+            type="submit"
+            disabled={loadingCreds}
+            className="w-full rounded-lg bg-gradient-to-r from-blue-600 to-indigo-500 px-4 py-3 font-semibold text-white hover:opacity-90 shadow transition disabled:opacity-60 cursor-pointer"
+          >
+            {loadingCreds ? "Signing in..." : "Sign in"}
+          </button>
+        </form>
+
+        <p className="mt-6 text-center text-gray-500 text-sm">
+          Don&apos;t have an account?{" "}
+          <a
+            href="/register"
+            className="text-blue-600 font-medium hover:underline"
+          >
+            Sign up
+          </a>
+        </p>
+      </div>
     </main>
   );
 }
