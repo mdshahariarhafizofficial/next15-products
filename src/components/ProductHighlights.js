@@ -1,25 +1,46 @@
 const sampleProducts = [
   {
-    id: 1,
-    name: "Premium Laptop",
-    price: "$1299",
-    description: "Powerful laptop for work and play with sleek design.",
-    image: "https://dummyimage.com/400x300/3b82f6/ffffff&text=Laptop",
+    "id": 1,
+    "name": "Premium Laptop",
+    "description": "Powerful 14\" laptop for work & play.",
+    "longDescription": "This premium laptop features a fast processor, color-accurate display and all-day battery life. Ideal for developers & creators.",
+    "price": 1299,
+    "image": "https://images.unsplash.com/photo-1491472253230-a044054ca35f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bGFwdG9wJTIwY29tcHV0ZXJ8ZW58MHx8MHx8fDA%3D",
+    "features": [
+      "Intel Core i7",
+      "16GB RAM",
+      "512GB SSD",
+      "14\" IPS Display"
+    ]
   },
   {
-    id: 2,
-    name: "Smartphone Pro",
-    price: "$899",
-    description: "Stay connected with the latest smartphone technology.",
-    image: "https://dummyimage.com/400x300/f59e0b/ffffff&text=Phone",
+    "id": 2,
+    "name": "Smartphone Pro",
+    "description": "Flagship camera & all-day battery.",
+    "longDescription": "Take stunning photos with advanced computational photography and enjoy fluid performance throughout the day.",
+    "price": 899,
+    "image": "https://www.trustedreviews.com/wp-content/uploads/sites/7/2025/01/Best-Android-smartphone-2025.jpg",
+    "features": [
+      "Triple Camera",
+      "8GB RAM",
+      "128GB Storage",
+      "5G"
+    ]
   },
   {
-    id: 3,
-    name: "Noise-Cancelling Headphones",
-    price: "$249",
-    description: "Experience immersive sound without distractions.",
-    image: "https://dummyimage.com/400x300/10b981/ffffff&text=Headphones",
-  },
+    "id": 3,
+    "name": "Noise-Cancel Headphones",
+    "description": "Immersive sound. Less noise.",
+    "longDescription": "Block the world and dive into your music. Comfortable fit and crystal-clear calls with beamforming mics.",
+    "price": 249,
+    "image": "https://cdn.mos.cms.futurecdn.net/PJkUwt9QbceoZDkmR3eg8C.jpg",
+    "features": [
+      "Active NC",
+      "40mm Drivers",
+      "Bluetooth 5.3",
+      "30h Battery"
+    ]
+  }
 ];
 
 export default function ProductHighlights() {
@@ -52,7 +73,7 @@ export default function ProductHighlights() {
                 </h4>
                 <p className="text-gray-600 mb-3">{product.description}</p>
                 <p className="text-2xl font-bold text-blue-600 mb-5">
-                  {product.price}
+                  ${product.price}
                 </p>
                 <a
                   href={`/products/${product.id}`}

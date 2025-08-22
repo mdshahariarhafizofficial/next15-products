@@ -5,7 +5,7 @@
     "description": "Powerful 14\" laptop for work & play.",
     "longDescription": "This premium laptop features a fast processor, color-accurate display and all-day battery life. Ideal for developers & creators.",
     "price": 1299,
-    "image": "https://dummyimage.com/800x600/3b82f6/ffffff&text=Laptop",
+    "image": "https://images.unsplash.com/photo-1491472253230-a044054ca35f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bGFwdG9wJTIwY29tcHV0ZXJ8ZW58MHx8MHx8fDA%3D",
     "features": [
       "Intel Core i7",
       "16GB RAM",
@@ -19,7 +19,7 @@
     "description": "Flagship camera & all-day battery.",
     "longDescription": "Take stunning photos with advanced computational photography and enjoy fluid performance throughout the day.",
     "price": 899,
-    "image": "https://dummyimage.com/800x600/f59e0b/ffffff&text=Phone",
+    "image": "https://www.trustedreviews.com/wp-content/uploads/sites/7/2025/01/Best-Android-smartphone-2025.jpg",
     "features": [
       "Triple Camera",
       "8GB RAM",
@@ -33,7 +33,7 @@
     "description": "Immersive sound. Less noise.",
     "longDescription": "Block the world and dive into your music. Comfortable fit and crystal-clear calls with beamforming mics.",
     "price": 249,
-    "image": "https://dummyimage.com/800x600/10b981/ffffff&text=Headphones",
+    "image": "https://cdn.mos.cms.futurecdn.net/PJkUwt9QbceoZDkmR3eg8C.jpg",
     "features": [
       "Active NC",
       "40mm Drivers",
@@ -47,7 +47,7 @@
     "description": "Fitness, notifications, payments.",
     "longDescription": "Track your runs, monitor heart rate, and stay in touch. Swim-proof with fast magnetic charging.",
     "price": 199,
-    "image": "https://dummyimage.com/800x600/f43f5e/ffffff&text=Smartwatch",
+    "image": "https://fonepro.pk/wp-content/uploads/Starmax-Product-Range-Summer-2024-2.png",
     "features": [
       "GPS",
       "Heart Rate",
@@ -61,7 +61,7 @@
     "description": "Crisp 27\" 4K with thin bezels.",
     "longDescription": "Perfect pixel density for design & code. Factory-calibrated color with low blue light mode.",
     "price": 399,
-    "image": "https://dummyimage.com/800x600/8b5cf6/ffffff&text=4K+Monitor",
+    "image": "https://i.rtings.com/assets/pages/UzlAzYNI/best-4k-gaming-monitors-20230808-2-medium.jpg?format=auto",
     "features": [
       "27\" 4K",
       "IPS Panel",
@@ -75,7 +75,7 @@
     "description": "Tactile switches. Per-key RGB.",
     "longDescription": "Hot-swappable switches with durable PBT keycaps. Compact layout with full arrow keys.",
     "price": 129,
-    "image": "https://dummyimage.com/800x600/ef4444/ffffff&text=Keyboard",
+    "image": "https://c4.wallpaperflare.com/wallpaper/651/727/590/gaming-setup-steelseries-keyboards-headphones-mouse-pad-hd-wallpaper-preview.jpg",
     "features": [
       "Hot-swap",
       "PBT Caps",
@@ -89,7 +89,7 @@
     "description": "Fast external NVMe storage.",
     "longDescription": "Transfer large files in seconds. Pocket-size durability with aluminum shell.",
     "price": 149,
-    "image": "https://dummyimage.com/800x600/06b6d4/ffffff&text=Portable+SSD",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9plfEENE2w3Coy0JF1WMOnhYkO0agtOhjag&s",
     "features": [
       "NVMe",
       "Up to 1000MB/s",
@@ -103,7 +103,7 @@
     "description": "Ergonomic. Quiet clicks.",
     "longDescription": "Precision tracking on any surface with long battery life and multi-device pairing.",
     "price": 49,
-    "image": "https://dummyimage.com/800x600/22c55e/ffffff&text=Mouse",
+    "image": "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2022/04/black-red-gaming-mouse.jpg",
     "features": [
       "BT + 2.4G",
       "Silent Switch",

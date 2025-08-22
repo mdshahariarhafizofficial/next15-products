@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function AddProductPage() {
   const { data: session, status } = useSession();
 
-  // ✅ সব ফিল্ড তোমার data.js এর সাথে মিলিয়ে রাখা হলো
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -25,19 +26,13 @@ export default function AddProductPage() {
   }
 
   if (!session) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-red-600 font-semibold text-lg">
-          Please login to add products.
-        </p>
-      </div>
-    );
+    return redirect("/login");
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ features কে array এ convert করবো (comma separated string থেকে)
+    
     const payload = {
       ...form,
       price: Number(form.price),
@@ -51,7 +46,7 @@ export default function AddProductPage() {
     });
 
     if (res.ok) {
-      alert("✅ Product added successfully!");
+      toast.success(`Product added successfully!`);
       setForm({
         name: "",
         description: "",
@@ -61,7 +56,7 @@ export default function AddProductPage() {
         features: "",
       });
     } else {
-      alert("❌ Failed to add product");
+      toast.error("Something went wrong!");
     }
   };
 
@@ -82,6 +77,7 @@ export default function AddProductPage() {
             type="text"
             placeholder="Product name"
             value={form.name}
+            required
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             className="border rounded-lg w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -95,6 +91,7 @@ export default function AddProductPage() {
           <input
             type="text"
             placeholder="Short description"
+            required
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
             className="border rounded-lg w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -110,6 +107,7 @@ export default function AddProductPage() {
             placeholder="Detailed description"
             rows="4"
             value={form.longDescription}
+            required
             onChange={(e) =>
               setForm({ ...form, longDescription: e.target.value })
             }
@@ -123,6 +121,7 @@ export default function AddProductPage() {
           <input
             type="number"
             placeholder="Price"
+            required
             value={form.price}
             onChange={(e) => setForm({ ...form, price: e.target.value })}
             className="border rounded-lg w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -138,6 +137,7 @@ export default function AddProductPage() {
             type="text"
             placeholder="https://dummyimage.com/800x600/..."
             value={form.image}
+            required
             onChange={(e) => setForm({ ...form, image: e.target.value })}
             className="border rounded-lg w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -152,6 +152,7 @@ export default function AddProductPage() {
             type="text"
             placeholder="Intel Core i7, 16GB RAM, 512GB SSD"
             value={form.features}
+            required
             onChange={(e) => setForm({ ...form, features: e.target.value })}
             className="border rounded-lg w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
