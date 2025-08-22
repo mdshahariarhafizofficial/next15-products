@@ -1,84 +1,28 @@
-'use client'; // এটি অবশ্যই ফাইলের একদম উপরে থাকবে
+// এই ফাইলটি Server Component হিসেবে থাকবে, তাই 'use client' থাকবে না
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 
-import { signIn } from "next-auth/react";
-import { useState, Suspense } from "react"; // Suspense ইম্পোর্ট করা হয়েছে
-import { FcGoogle } from "react-icons/fc";
-import { useSearchParams } from "next/navigation";
-import Link from "next/link";
+// ClientLoginForm কে ডাইনামিকভাবে ইম্পোর্ট করা হয়েছে ssr: false সহ
+// এটি নিশ্চিত করে যে useSearchParams শুধুমাত্র ক্লায়েন্ট-সাইডে রেন্ডার হবে
+const ClientLoginForm = dynamic(() => import('./ClientLoginForm'), {
+  ssr: false, // সার্ভার-সাইড রেন্ডারিং বন্ধ করা হয়েছে এই কম্পোনেন্টের জন্য
+  loading: () => (
+    <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 text-center text-gray-600">
+      Loading login form...
+    </div>
+  ), // লোডিং স্টেট দেখানোর জন্য একটি ফলব্যাক
+});
 
-// এই কম্পোনেন্টটি এখন সরাসরি LoginPage হিসাবে কাজ করবে
-// কোনো dynamic import এর প্রয়োজন নেই, কারণ পুরো ফাইলটিই 'use client'
 export default function LoginPage() {
-  // useSearchParams একটি React Hook, তাই এটি Component এর মধ্যে থাকতে হবে
-  const params = useSearchParams();
-  const callbackUrl = params.get("callbackUrl") || "/products";
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loadingCreds, setLoadingCreds] = useState(false);
-  const [loadingGoogle, setLoadingGoogle] = useState(false);
-
-  const onCredentialsLogin = async (e) => {
-    e.preventDefault();
-    setLoadingCreds(true);
-    await signIn("credentials", { email, password, redirect: true, callbackUrl });
-    setLoadingCreds(false);
-  };
-
   return (
-    // মূল <main> ট্যাগ থেকে শুরু করে সম্পূর্ণ JSX এখানে থাকবে
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-indigo-100 px-4">
-      {/* useSearchParams ব্যবহারের জন্য এই অংশটি Suspense এর মধ্যে রাখা হয়েছে */}
-      <Suspense fallback={<div>Loading login form...</div>}>
-        <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Welcome Back</h1>
-
-          <button
-            onClick={() => { setLoadingGoogle(true); signIn("google", { callbackUrl }); }}
-            disabled={loadingGoogle}
-            className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 font-semibold hover:bg-gray-300 shadow transition disabled:opacity-60 mb-6 cursor-pointer"
-          >
-            <FcGoogle size={25} />
-            {loadingGoogle ? "Signing in..." : "Continue with Google"}
-          </button>
-
-          <div className="flex items-center my-4">
-            <hr className="flex-grow border-gray-300" />
-            <span className="px-3 text-gray-400 text-sm">or</span>
-            <hr className="flex-grow border-gray-300" />
-          </div>
-
-          <form onSubmit={onCredentialsLogin} className="space-y-4">
-            <input
-              type="email"
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="demo@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="password123"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <button
-              type="submit"
-              disabled={loadingCreds}
-              className="w-full rounded-lg bg-gradient-to-r from-blue-600 to-indigo-500 px-4 py-3 font-semibold text-white hover:opacity-90 shadow transition disabled:opacity-60 cursor-pointer"
-            >
-              {loadingCreds ? "Signing in..." : "Sign in"}
-            </button>
-          </form>
-
-          <p className="mt-6 text-center text-gray-500 text-sm">
-            Don&apos;t have an account?{" "}
-            <Link href="/register" className="text-blue-600 font-medium hover:underline">Sign up</Link>
-          </p>
-        </div>
+      {/* ClientLoginForm কে সরাসরি এখানে রেন্ডার করা হবে।
+          dynamic import এর 'loading' অপশনটি Suspense-এর মতো কাজ করে।
+          তবে, নিরাপত্তা হিসেবে, একটি বাইরের Suspense রাখা খারাপ নয়।
+          useSearchParams() যেহেতু client-only, তাই ssr:false ডাইনামিক ইম্পোর্টটিই মূল সমাধান।
+      */}
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-xl">Loading page content...</div>}>
+         <ClientLoginForm />
       </Suspense>
     </main>
   );
