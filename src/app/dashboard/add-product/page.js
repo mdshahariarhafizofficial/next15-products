@@ -74,7 +74,7 @@ export default function AddProductPage() {
       features: form.features.split(",").map((f) => f.trim()),
     };
 
-  const res = await fetch(`${BACKEND_URL}/api/products`, {
+  const res = await fetch(`${BACKEND_URL}/products`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
