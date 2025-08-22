@@ -4,9 +4,7 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useSearchParams } from "next/navigation";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-
 
 export default function LoginPage() {
   const params = useSearchParams();
@@ -26,6 +24,7 @@ export default function LoginPage() {
       redirect: true,
       callbackUrl,
     });
+    setLoadingCreds(false);
   };
 
   return (
@@ -38,7 +37,6 @@ export default function LoginPage() {
           Sign in to access your dashboard & manage products
         </p>
 
-        {/* Google Login */}
         <button
           onClick={() => {
             setLoadingGoogle(true);
@@ -57,7 +55,6 @@ export default function LoginPage() {
           <hr className="flex-grow border-gray-300" />
         </div>
 
-        {/* Credentials Form */}
         <form onSubmit={onCredentialsLogin} className="space-y-4">
           <input
             type="email"
