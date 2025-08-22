@@ -21,6 +21,7 @@ const nextConfig = {
         "i.pravatar.cc",
         "lh3.googleusercontent.com",
         "dummyimage.com",
+        "i.ibb.co",
     ],
   },
 };
