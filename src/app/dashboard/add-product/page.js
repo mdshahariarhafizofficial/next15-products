@@ -9,6 +9,7 @@ import { FiUpload } from "react-icons/fi"; // upload icon
 
 export default function AddProductPage() {
   const { data: session, status } = useSession();
+  const BACKEND_URL = "https://next15-products-server.vercel.app";
 
   const [form, setForm] = useState({
     name: "",
@@ -73,11 +74,12 @@ export default function AddProductPage() {
       features: form.features.split(",").map((f) => f.trim()),
     };
 
-    const res = await fetch("/api/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+  const res = await fetch(`${BACKEND_URL}/api/products`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
 
     if (res.ok) {
       toast.success(`Product added successfully!`);

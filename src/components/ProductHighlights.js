@@ -1,98 +1,42 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const sampleProducts = [
-  {
-    "id": 1,
-    "name": "Premium Laptop",
-    "description": "Powerful 14\" laptop for work & play.",
-    "longDescription": "This premium laptop features a fast processor, color-accurate display and all-day battery life. Ideal for developers & creators.",
-    "price": 1299,
-    "image": "https://images.unsplash.com/photo-1491472253230-a044054ca35f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bGFwdG9wJTIwY29tcHV0ZXJ8ZW58MHx8MHx8fDA%3D",
-    "features": [
-      "Intel Core i7",
-      "16GB RAM",
-      "512GB SSD",
-      "14\" IPS Display"
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Smartphone Pro",
-    "description": "Flagship camera & all-day battery.",
-    "longDescription": "Take stunning photos with advanced computational photography and enjoy fluid performance throughout the day.",
-    "price": 899,
-    "image": "https://www.trustedreviews.com/wp-content/uploads/sites/7/2025/01/Best-Android-smartphone-2025.jpg",
-    "features": [
-      "Triple Camera",
-      "8GB RAM",
-      "128GB Storage",
-      "5G"
-    ]
-  },
-  {
-    "id": 3,
-    "name": "Noise-Cancel Headphones",
-    "description": "Immersive sound. Less noise.",
-    "longDescription": "Block the world and dive into your music. Comfortable fit and crystal-clear calls with beamforming mics.",
-    "price": 249,
-    "image": "https://cdn.mos.cms.futurecdn.net/PJkUwt9QbceoZDkmR3eg8C.jpg",
-    "features": [
-      "Active NC",
-      "40mm Drivers",
-      "Bluetooth 5.3",
-      "30h Battery"
-    ]
-  },
-    {
-    "id": 4,
-    "name": "Smart Watch",
-    "description": "Fitness, notifications, payments.",
-    "longDescription": "Track your runs, monitor heart rate, and stay in touch. Swim-proof with fast magnetic charging.",
-    "price": 199,
-    "image": "https://fonepro.pk/wp-content/uploads/Starmax-Product-Range-Summer-2024-2.png",
-    "features": [
-      "GPS",
-      "Heart Rate",
-      "5ATM",
-      "Sleep Tracking"
-    ]
-  },
-  {
-    "id": 5,
-    "name": "4K Monitor",
-    "description": "Crisp 27\" 4K with thin bezels.",
-    "longDescription": "Perfect pixel density for design & code. Factory-calibrated color with low blue light mode.",
-    "price": 399,
-    "image": "https://i.rtings.com/assets/pages/UzlAzYNI/best-4k-gaming-monitors-20230808-2-medium.jpg?format=auto",
-    "features": [
-      "27\" 4K",
-      "IPS Panel",
-      "HDR10",
-      "USB-C 65W PD"
-    ]
-  },
-  {
-    "id": 6,
-    "name": "Mechanical Keyboard",
-    "description": "Tactile switches. Per-key RGB.",
-    "longDescription": "Hot-swappable switches with durable PBT keycaps. Compact layout with full arrow keys.",
-    "price": 129,
-    "image": "https://cdn.mos.cms.futurecdn.net/wmSqYrfFt3AfSGZjnbYmvm.jpg",
-    "features": [
-      "Hot-swap",
-      "PBT Caps",
-      "NKRO",
-      "USB-C"
-    ]
-  }
-];
+const BACKEND_URL = "https://next15-products-server.vercel.app";
 
 export default function ProductHighlights() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/products`);
+        const data = await res.json();
+        setProducts(data.slice(0, 6)); // প্রথম 6 product দেখাবে
+      } catch (err) {
+        console.error("Failed to fetch products", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-20 bg-gray-50 text-center">
+        <p className="text-gray-600">Loading products...</p>
+      </section>
+    );
+  }
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        {/* Section Title */}
         <h3 className="text-4xl font-extrabold text-gray-800 mb-4">
           Featured <span className="text-blue-600">Products</span>
         </h3>
@@ -100,15 +44,14 @@ export default function ProductHighlights() {
           Hand-picked collection of our best products just for you
         </p>
 
-        {/* Product Cards */}
         <div className="grid md:grid-cols-3 gap-8">
-          {sampleProducts.map((product) => (
+          {products.map((product) => (
             <div
-              key={product.id}
+              key={product._id} // MongoDB ObjectId
               className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2"
             >
               <Image
-                width={400}  
+                width={400}
                 height={300}
                 src={product.image}
                 alt={product.name}
@@ -123,7 +66,7 @@ export default function ProductHighlights() {
                   ${product.price}
                 </p>
                 <Link
-                  href={`/products/${product.id}`}
+                  href={`/products/${product._id}`}
                   className="inline-block w-full text-center bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition"
                 >
                   View Details

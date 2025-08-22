@@ -4,15 +4,26 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+const BACKEND_URL = "https://next15-products-server.vercel.app";
+
 export default function ProductsPage() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/products")
-      .then((r) => r.json())
-      .then((data) => setItems(data))
-      .finally(() => setLoading(false));
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/products`);
+        const data = await res.json();
+        setItems(data); // MongoDB থেকে আসা data
+      } catch (err) {
+        console.error("Failed to fetch products", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   if (loading) {
@@ -49,19 +60,22 @@ export default function ProductsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((p) => (
             <div
-              key={p.id}
+              key={p._id} // MongoDB ObjectId
               className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition"
             >
               <Image 
-              width={400}  
-              height={300}
-              src={p.image} alt={p.name} className="w-full h-48 object-cover" />
+                width={400}  
+                height={300}
+                src={p.image} 
+                alt={p.name} 
+                className="w-full h-48 object-cover" 
+              />
               <div className="p-6">
                 <h2 className="text-xl font-semibold text-gray-800 mb-1">{p.name}</h2>
                 <p className="text-gray-600 mb-3 line-clamp-2">{p.description}</p>
                 <p className="text-blue-600 font-bold text-lg mb-4">${p.price}</p>
                 <Link
-                  href={`/products/${p.id}`}
+                  href={`/products/${p._id}`}
                   className="block w-full text-center bg-gradient-to-r from-blue-600 to-indigo-500
                              text-white py-2 rounded-lg font-medium hover:opacity-90 transition"
                 >

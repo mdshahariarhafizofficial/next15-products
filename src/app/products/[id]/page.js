@@ -1,27 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Link from "next/link";
-import { use } from "react";
 import Image from "next/image";
 
+const BACKEND_URL = "https://next15-products-server.vercel.app";
+
 export default function ProductDetailsPage({ params }) {
-  const { id } = use(params);
+  const { id } = use(params); // Next.js থেকে id
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/products/${id}`)
-      .then(async (r) => {
-        if (!r.ok) {
+    const fetchProduct = async () => {
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/products/${id}`);
+        if (!res.ok) {
           setNotFound(true);
-          return null;
+          return;
         }
-        return r.json();
-      })
-      .then((data) => setProduct(data))
-      .finally(() => setLoading(false));
+        const data = await res.json();
+        setProduct(data);
+      } catch (err) {
+        console.error("Failed to fetch product", err);
+        setNotFound(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
   }, [id]);
 
   if (loading) {
@@ -65,9 +74,12 @@ export default function ProductDetailsPage({ params }) {
         <div className="grid md:grid-cols-2 gap-10 mt-6">
           <div className="bg-white rounded-2xl shadow overflow-hidden">
             <Image 
-            width={400}  
-            height={300}
-            src={product.image} alt={product.name} className="w-full h-80 object-cover" />
+              width={400}  
+              height={300}
+              src={product.image} 
+              alt={product.name} 
+              className="w-full h-80 object-cover" 
+            />
           </div>
 
           <div>
