@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
@@ -18,21 +18,14 @@ export default function LoginPage() {
   const onCredentialsLogin = async (e) => {
     e.preventDefault();
     setLoadingCreds(true);
-    await signIn("credentials", {
-      email,
-      password,
-      redirect: true,
-      callbackUrl,
-    });
+    await signIn("credentials", { email, password, redirect: true, callbackUrl });
     setLoadingCreds(false);
   };
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-indigo-100 px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-          Welcome Back
-        </h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Welcome Back</h1>
 
         <button
           onClick={() => {
@@ -80,9 +73,7 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-gray-500 text-sm">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-blue-600 font-medium hover:underline">
-            Sign up
-          </Link>
+          <Link href="/register" className="text-blue-600 font-medium hover:underline">Sign up</Link>
         </p>
       </div>
     </main>
