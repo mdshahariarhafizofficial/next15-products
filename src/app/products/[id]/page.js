@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { use } from "react";
+import Image from "next/image";
 
 export default function ProductDetailsPage({ params }) {
   const { id } = use(params);
@@ -63,7 +64,7 @@ export default function ProductDetailsPage({ params }) {
 
         <div className="grid md:grid-cols-2 gap-10 mt-6">
           <div className="bg-white rounded-2xl shadow overflow-hidden">
-            <img src={product.image} alt={product.name} className="w-full h-80 object-cover" />
+            <Image src={product.image} alt={product.name} className="w-full h-80 object-cover" />
           </div>
 
           <div>

@@ -1,4 +1,7 @@
 "use client";
+
+import Image from "next/image";
+
 export default function AboutPage() {
   return (
     <div className="pt-20 bg-gray-50 min-h-screen">
@@ -27,7 +30,7 @@ export default function AboutPage() {
         </div>
 
         <div className="flex items-center justify-center">
-          <img
+          <Image
             src="https://dummyimage.com/600x400/3b82f6/ffffff&text=Next15+Products"
             alt="About Website"
             className="rounded-lg shadow-lg"
@@ -66,7 +69,7 @@ export default function AboutPage() {
               { name: "Carol Lee", role: "Marketing Specialist", image: "https://i.pravatar.cc/150?img=8" },
             ].map((member) => (
               <div key={member.name} className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-lg transition">
-                <img
+                <Image
                   src={member.image}
                   alt={member.name}
                   className="w-32 h-32 mx-auto rounded-full mb-4"

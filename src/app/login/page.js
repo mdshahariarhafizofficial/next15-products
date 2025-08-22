@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useSearchParams } from "next/navigation";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 
 export default function LoginPage() {
@@ -86,12 +87,12 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-gray-500 text-sm">
           Don&apos;t have an account?{" "}
-          <a
+          <Link
             href="/register"
             className="text-blue-600 font-medium hover:underline"
           >
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </main>

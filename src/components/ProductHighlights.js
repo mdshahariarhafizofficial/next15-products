@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 const sampleProducts = [
   {
     "id": 1,
@@ -62,7 +65,7 @@ export default function ProductHighlights() {
               key={product.id}
               className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2"
             >
-              <img
+              <Image
                 src={product.image}
                 alt={product.name}
                 className="w-full h-48 object-cover rounded-t-2xl"
@@ -75,12 +78,12 @@ export default function ProductHighlights() {
                 <p className="text-2xl font-bold text-blue-600 mb-5">
                   ${product.price}
                 </p>
-                <a
+                <Link
                   href={`/products/${product.id}`}
                   className="inline-block w-full text-center bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition"
                 >
                   View Details
-                </a>
+                </Link>
               </div>
             </div>
           ))}

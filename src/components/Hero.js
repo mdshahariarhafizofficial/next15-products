@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <section className="bg-gradient-to-r from-blue-50 to-indigo-100 py-30 md:py-50  flex items-center">
@@ -14,24 +17,24 @@ export default function Hero() {
             Find everything you need in one place.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <a
+            <Link
               href="/products"
               className="px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow hover:bg-black transition"
             >
               Shop Now
-            </a>
-            <a
+            </Link>
+            <Link
               href="/about"
               className="px-6 py-3 rounded-lg border border-blue-600 text-blue-600 font-semibold hover:bg-blue-50 transition"
             >
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
 
         {/* Right Image */}
         <div className="flex justify-center md:justify-end">
-          <img
+          <Image
             src="https://i.postimg.cc/XJKcdjyp/undraw-shopping-a55o.png"
             className="rounded-2xl shadow-lg"
           />
