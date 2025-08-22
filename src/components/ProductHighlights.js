@@ -78,7 +78,7 @@ const sampleProducts = [
     "description": "Tactile switches. Per-key RGB.",
     "longDescription": "Hot-swappable switches with durable PBT keycaps. Compact layout with full arrow keys.",
     "price": 129,
-    "image": "https://c4.wallpaperflare.com/wallpaper/651/727/590/gaming-setup-steelseries-keyboards-headphones-mouse-pad-hd-wallpaper-preview.jpg",
+    "image": "https://cdn.mos.cms.futurecdn.net/wmSqYrfFt3AfSGZjnbYmvm.jpg",
     "features": [
       "Hot-swap",
       "PBT Caps",
