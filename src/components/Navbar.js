@@ -52,6 +52,8 @@ export default function Navbar() {
             ) : (
               <div className="relative">
                 <Image
+                  width={400}  
+                  height={300}  
                   src={session.user?.image || "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"}
                   alt={session.user?.name}
                   className="w-10 h-10 rounded-full cursor-pointer border-2 border-blue-600"

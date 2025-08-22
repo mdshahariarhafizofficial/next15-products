@@ -64,7 +64,10 @@ export default function ProductDetailsPage({ params }) {
 
         <div className="grid md:grid-cols-2 gap-10 mt-6">
           <div className="bg-white rounded-2xl shadow overflow-hidden">
-            <Image src={product.image} alt={product.name} className="w-full h-80 object-cover" />
+            <Image 
+            width={400}  
+            height={300}
+            src={product.image} alt={product.name} className="w-full h-80 object-cover" />
           </div>
 
           <div>

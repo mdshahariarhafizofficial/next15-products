@@ -52,7 +52,10 @@ export default function ProductsPage() {
               key={p.id}
               className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition"
             >
-              <Image src={p.image} alt={p.name} className="w-full h-48 object-cover" />
+              <Image 
+              width={400}  
+              height={300}
+              src={p.image} alt={p.name} className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h2 className="text-xl font-semibold text-gray-800 mb-1">{p.name}</h2>
                 <p className="text-gray-600 mb-3 line-clamp-2">{p.description}</p>

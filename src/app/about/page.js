@@ -31,6 +31,8 @@ export default function AboutPage() {
 
         <div className="flex items-center justify-center">
           <Image
+            width={400}  
+            height={300}
             src="https://dummyimage.com/600x400/3b82f6/ffffff&text=Next15+Products"
             alt="About Website"
             className="rounded-lg shadow-lg"
@@ -70,6 +72,8 @@ export default function AboutPage() {
             ].map((member) => (
               <div key={member.name} className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-lg transition">
                 <Image
+                  width={400}  
+                  height={300}    
                   src={member.image}
                   alt={member.name}
                   className="w-32 h-32 mx-auto rounded-full mb-4"

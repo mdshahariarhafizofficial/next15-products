@@ -66,6 +66,8 @@ export default function ProductHighlights() {
               className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2"
             >
               <Image
+                width={400}  
+                height={300}
                 src={product.image}
                 alt={product.name}
                 className="w-full h-48 object-cover rounded-t-2xl"
