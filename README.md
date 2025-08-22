@@ -139,5 +139,7 @@ Visit `http://localhost:3000` in your browser.
 * Toast notifications indicate successful product addition.
 
 ---
+🔹 License
+This project is licensed under the MIT License.
 
 Made with ❤️ using **Next.js 15**, **NextAuth.js**, and **Tailwind CSS**.
