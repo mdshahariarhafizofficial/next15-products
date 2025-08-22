@@ -43,6 +43,48 @@ const sampleProducts = [
       "Bluetooth 5.3",
       "30h Battery"
     ]
+  },
+    {
+    "id": 4,
+    "name": "Smart Watch",
+    "description": "Fitness, notifications, payments.",
+    "longDescription": "Track your runs, monitor heart rate, and stay in touch. Swim-proof with fast magnetic charging.",
+    "price": 199,
+    "image": "https://fonepro.pk/wp-content/uploads/Starmax-Product-Range-Summer-2024-2.png",
+    "features": [
+      "GPS",
+      "Heart Rate",
+      "5ATM",
+      "Sleep Tracking"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "4K Monitor",
+    "description": "Crisp 27\" 4K with thin bezels.",
+    "longDescription": "Perfect pixel density for design & code. Factory-calibrated color with low blue light mode.",
+    "price": 399,
+    "image": "https://i.rtings.com/assets/pages/UzlAzYNI/best-4k-gaming-monitors-20230808-2-medium.jpg?format=auto",
+    "features": [
+      "27\" 4K",
+      "IPS Panel",
+      "HDR10",
+      "USB-C 65W PD"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Mechanical Keyboard",
+    "description": "Tactile switches. Per-key RGB.",
+    "longDescription": "Hot-swappable switches with durable PBT keycaps. Compact layout with full arrow keys.",
+    "price": 129,
+    "image": "https://c4.wallpaperflare.com/wallpaper/651/727/590/gaming-setup-steelseries-keyboards-headphones-mouse-pad-hd-wallpaper-preview.jpg",
+    "features": [
+      "Hot-swap",
+      "PBT Caps",
+      "NKRO",
+      "USB-C"
+    ]
   }
 ];
 
