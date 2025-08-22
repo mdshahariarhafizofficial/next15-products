@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-export default function LoginPage() {
+export default function LoginForm() {
   const params = useSearchParams();
   const callbackUrl = params.get("callbackUrl") || "/products";
 
@@ -80,7 +80,10 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-gray-500 text-sm">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-blue-600 font-medium hover:underline">
+          <Link
+            href="/register"
+            className="text-blue-600 font-medium hover:underline"
+          >
             Sign up
           </Link>
         </p>
