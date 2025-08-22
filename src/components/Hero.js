@@ -35,7 +35,7 @@ export default function Hero() {
         {/* Right Image */}
         <div className="flex justify-center md:justify-end">
           <Image
-          width={400}
+          width={500}
           height={300}      
             src="https://i.postimg.cc/XJKcdjyp/undraw-shopping-a55o.png"
             className="rounded-2xl shadow-lg"

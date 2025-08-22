@@ -29,9 +29,9 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-end">
           <Image
-            width={400}  
+            width={500}  
             height={300}
             src="https://dummyimage.com/600x400/3b82f6/ffffff&text=Next15+Products"
             alt="About Website"
